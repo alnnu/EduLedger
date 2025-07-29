@@ -32,7 +32,7 @@ struct cert {
     certCount = 0;
   }
 
-  function addCert() external returns (cert memory) {
+  function addCert() payable external returns (cert memory) {
     
     cert storage newCert = certs[certCount];
 
