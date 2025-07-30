@@ -1,2 +1,4 @@
-**/idea
-**/.env
+.idea
+/blockchain/build
+/blockchain/node_modules
+

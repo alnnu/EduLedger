@@ -9,262 +9,282 @@ import WalletButton from './components/WalletButton'
 export default function Home() {
   const abi = [
     {
-      inputs: [],
-      stateMutability: 'nonpayable',
-      type: 'constructor',
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "nftAddress",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
     },
     {
-      inputs: [
+      "inputs": [
         {
-          internalType: 'uint256',
-          name: '',
-          type: 'uint256',
-        },
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
       ],
-      name: 'certs',
-      outputs: [
+      "name": "certs",
+      "outputs": [
         {
-          internalType: 'uint256',
-          name: 'id',
-          type: 'uint256',
+          "internalType": "uint256",
+          "name": "id",
+          "type": "uint256"
         },
         {
-          internalType: 'string',
-          name: 'issuer',
-          type: 'string',
+          "internalType": "string",
+          "name": "issuer",
+          "type": "string"
         },
         {
-          internalType: 'string',
-          name: 'issuernceDate',
-          type: 'string',
+          "internalType": "string",
+          "name": "issuernceDate",
+          "type": "string"
         },
         {
-          components: [
+          "components": [
             {
-              internalType: 'string',
-              name: 'id',
-              type: 'string',
+              "internalType": "string",
+              "name": "id",
+              "type": "string"
             },
             {
-              internalType: 'string',
-              name: 'mane',
-              type: 'string',
+              "internalType": "string",
+              "name": "mane",
+              "type": "string"
             },
             {
-              internalType: 'string',
-              name: 'email',
-              type: 'string',
+              "internalType": "string",
+              "name": "email",
+              "type": "string"
             },
             {
-              internalType: 'address',
-              name: 'publicKey',
-              type: 'address',
-            },
+              "internalType": "address",
+              "name": "publicKey",
+              "type": "address"
+            }
           ],
-          internalType: 'struct Cert.cretencials',
-          name: 'credentialSubject',
-          type: 'tuple',
+          "internalType": "struct Cert.cretencials",
+          "name": "credentialSubject",
+          "type": "tuple"
         },
         {
-          components: [
+          "components": [
             {
-              internalType: 'string',
-              name: 'contentType',
-              type: 'string',
+              "internalType": "string",
+              "name": "contentType",
+              "type": "string"
             },
             {
-              internalType: 'string',
-              name: 'content',
-              type: 'string',
-            },
+              "internalType": "string",
+              "name": "content",
+              "type": "string"
+            }
           ],
-          internalType: 'struct Cert.display',
-          name: 'displayInfo',
-          type: 'tuple',
-        },
+          "internalType": "struct Cert.display",
+          "name": "displayInfo",
+          "type": "tuple"
+        }
       ],
-      stateMutability: 'view',
-      type: 'function',
-      constant: true,
+      "stateMutability": "view",
+      "type": "function",
+      "constant": true
     },
     {
-      inputs: [],
-      name: 'addCert',
-      outputs: [
+      "inputs": [],
+      "name": "nftContract",
+      "outputs": [
         {
-          components: [
-            {
-              internalType: 'string[]',
-              name: 'context',
-              type: 'string[]',
-            },
-            {
-              internalType: 'uint256',
-              name: 'id',
-              type: 'uint256',
-            },
-            {
-              internalType: 'string[]',
-              name: 'certType',
-              type: 'string[]',
-            },
-            {
-              internalType: 'string',
-              name: 'issuer',
-              type: 'string',
-            },
-            {
-              internalType: 'string',
-              name: 'issuernceDate',
-              type: 'string',
-            },
-            {
-              components: [
-                {
-                  internalType: 'string',
-                  name: 'id',
-                  type: 'string',
-                },
-                {
-                  internalType: 'string',
-                  name: 'mane',
-                  type: 'string',
-                },
-                {
-                  internalType: 'string',
-                  name: 'email',
-                  type: 'string',
-                },
-                {
-                  internalType: 'address',
-                  name: 'publicKey',
-                  type: 'address',
-                },
-              ],
-              internalType: 'struct Cert.cretencials',
-              name: 'credentialSubject',
-              type: 'tuple',
-            },
-            {
-              components: [
-                {
-                  internalType: 'string',
-                  name: 'contentType',
-                  type: 'string',
-                },
-                {
-                  internalType: 'string',
-                  name: 'content',
-                  type: 'string',
-                },
-              ],
-              internalType: 'struct Cert.display',
-              name: 'displayInfo',
-              type: 'tuple',
-            },
-          ],
-          internalType: 'struct Cert.cert',
-          name: '',
-          type: 'tuple',
-        },
+          "internalType": "contract Nft",
+          "name": "",
+          "type": "address"
+        }
       ],
-      stateMutability: 'payable',
-      type: 'function',
-      payable: true,
+      "stateMutability": "view",
+      "type": "function",
+      "constant": true
     },
     {
-      inputs: [
+      "inputs": [],
+      "name": "addCert",
+      "outputs": [
         {
-          internalType: 'uint256',
-          name: 'id',
-          type: 'uint256',
-        },
-      ],
-      name: 'getCert',
-      outputs: [
-        {
-          components: [
+          "components": [
             {
-              internalType: 'string[]',
-              name: 'context',
-              type: 'string[]',
+              "internalType": "string[]",
+              "name": "context",
+              "type": "string[]"
             },
             {
-              internalType: 'uint256',
-              name: 'id',
-              type: 'uint256',
+              "internalType": "uint256",
+              "name": "id",
+              "type": "uint256"
             },
             {
-              internalType: 'string[]',
-              name: 'certType',
-              type: 'string[]',
+              "internalType": "string[]",
+              "name": "certType",
+              "type": "string[]"
             },
             {
-              internalType: 'string',
-              name: 'issuer',
-              type: 'string',
+              "internalType": "string",
+              "name": "issuer",
+              "type": "string"
             },
             {
-              internalType: 'string',
-              name: 'issuernceDate',
-              type: 'string',
+              "internalType": "string",
+              "name": "issuernceDate",
+              "type": "string"
             },
             {
-              components: [
+              "components": [
                 {
-                  internalType: 'string',
-                  name: 'id',
-                  type: 'string',
+                  "internalType": "string",
+                  "name": "id",
+                  "type": "string"
                 },
                 {
-                  internalType: 'string',
-                  name: 'mane',
-                  type: 'string',
+                  "internalType": "string",
+                  "name": "mane",
+                  "type": "string"
                 },
                 {
-                  internalType: 'string',
-                  name: 'email',
-                  type: 'string',
+                  "internalType": "string",
+                  "name": "email",
+                  "type": "string"
                 },
                 {
-                  internalType: 'address',
-                  name: 'publicKey',
-                  type: 'address',
-                },
+                  "internalType": "address",
+                  "name": "publicKey",
+                  "type": "address"
+                }
               ],
-              internalType: 'struct Cert.cretencials',
-              name: 'credentialSubject',
-              type: 'tuple',
+              "internalType": "struct Cert.cretencials",
+              "name": "credentialSubject",
+              "type": "tuple"
             },
             {
-              components: [
+              "components": [
                 {
-                  internalType: 'string',
-                  name: 'contentType',
-                  type: 'string',
+                  "internalType": "string",
+                  "name": "contentType",
+                  "type": "string"
                 },
                 {
-                  internalType: 'string',
-                  name: 'content',
-                  type: 'string',
-                },
+                  "internalType": "string",
+                  "name": "content",
+                  "type": "string"
+                }
               ],
-              internalType: 'struct Cert.display',
-              name: 'displayInfo',
-              type: 'tuple',
-            },
+              "internalType": "struct Cert.display",
+              "name": "displayInfo",
+              "type": "tuple"
+            }
           ],
-          internalType: 'struct Cert.cert',
-          name: '',
-          type: 'tuple',
-        },
+          "internalType": "struct Cert.cert",
+          "name": "",
+          "type": "tuple"
+        }
       ],
-      stateMutability: 'view',
-      type: 'function',
-      constant: true,
+      "stateMutability": "payable",
+      "type": "function",
+      "payable": true
     },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "id",
+          "type": "uint256"
+        }
+      ],
+      "name": "getCert",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "string[]",
+              "name": "context",
+              "type": "string[]"
+            },
+            {
+              "internalType": "uint256",
+              "name": "id",
+              "type": "uint256"
+            },
+            {
+              "internalType": "string[]",
+              "name": "certType",
+              "type": "string[]"
+            },
+            {
+              "internalType": "string",
+              "name": "issuer",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "issuernceDate",
+              "type": "string"
+            },
+            {
+              "components": [
+                {
+                  "internalType": "string",
+                  "name": "id",
+                  "type": "string"
+                },
+                {
+                  "internalType": "string",
+                  "name": "mane",
+                  "type": "string"
+                },
+                {
+                  "internalType": "string",
+                  "name": "email",
+                  "type": "string"
+                },
+                {
+                  "internalType": "address",
+                  "name": "publicKey",
+                  "type": "address"
+                }
+              ],
+              "internalType": "struct Cert.cretencials",
+              "name": "credentialSubject",
+              "type": "tuple"
+            },
+            {
+              "components": [
+                {
+                  "internalType": "string",
+                  "name": "contentType",
+                  "type": "string"
+                },
+                {
+                  "internalType": "string",
+                  "name": "content",
+                  "type": "string"
+                }
+              ],
+              "internalType": "struct Cert.display",
+              "name": "displayInfo",
+              "type": "tuple"
+            }
+          ],
+          "internalType": "struct Cert.cert",
+          "name": "",
+          "type": "tuple"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function",
+      "constant": true
+    }
   ]
-  const contractAdress = '0x4aC455643452Cd9857Bc21316C1197FcF6Ad6243'
+  const contractAdress = '0x098F8a414E062ca608c8bCC01974cbcCA12cE99b'
   const [walletConnected, setWalletConnected] = useState(false)
   const [cert, setCert] = useState<any>()
   // @ts-ignore
