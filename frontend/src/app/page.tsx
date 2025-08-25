@@ -284,7 +284,7 @@ export default function Home() {
       "constant": true
     }
   ]
-  const contractAdress = '0x098F8a414E062ca608c8bCC01974cbcCA12cE99b'
+  const contractAdress = "0xF424A8D0afFEfa786D1551865A48546F80d4042B"
   const [walletConnected, setWalletConnected] = useState(false)
   const [cert, setCert] = useState<any>()
   // @ts-ignore
