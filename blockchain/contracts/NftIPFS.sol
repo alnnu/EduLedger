@@ -14,7 +14,7 @@ contract NftIPFS is ERC721, ERC721URIStorage {
   function mintCertificado(address to) external  {
     uint256 tokenId = nextTokenId++;
     _mint(to, tokenId);
-    _setTokenURI(tokenId, "ipfs://bafybeicn7i3soqdgr7dwnrwytgq4zxy7a5jpkizrvhm5mv6bgjd32wm3q4/welcome-to-IPFS.jpg");
+    _setTokenURI(tokenId, "ipfs://Qmb7weuXsPz7DtKirUNQf3o28qHxbz3J7U3FCUtZFPaddU");
   }
 
   function tokenURI(uint256 tokenId) public view override(ERC721, ERC721URIStorage) returns (string memory) {

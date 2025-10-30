@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-import "./Nft.sol";
+import "./NftIPFS.sol";
 
 contract Cert {
   
@@ -16,7 +16,7 @@ contract Cert {
     }
     struct cretencials {
         string id;
-        string mane;
+        string name;
         string email;
         address publicKey;
     }
@@ -29,11 +29,11 @@ contract Cert {
     mapping (uint256 => cert) public certs;
 
     uint certCount;
-    Nft public nftContract;
+    NftIPFS public nftContract;
 
     constructor (address nftAddress) {
         certCount = 0;
-        nftContract = Nft(nftAddress);
+        nftContract = NftIPFS(nftAddress);
     }
 
     function addCert() payable external returns (cert memory) {
@@ -46,13 +46,13 @@ contract Cert {
         newCert.issuer = "Issuer Teste";
         newCert.issuernceDate = "2023-10-01";
         newCert.credentialSubject.id = "subject1";
-        newCert.credentialSubject.mane = "Subject Name";
+        newCert.credentialSubject.name = "Subject Name";
         newCert.credentialSubject.email = "test@test";
         newCert.credentialSubject.publicKey = address(msg.sender);
         newCert.displayInfo.contentType = "application/json";
         newCert.displayInfo.content = "{msg: teste}";
 
-        nftContract.mintCertificado(msg.sender, newCert.id);
+        nftContract.mintCertificado(msg.sender);
 
         certCount++;
         return newCert;
@@ -62,4 +62,3 @@ contract Cert {
         return certs[id];
     }
 }
-
