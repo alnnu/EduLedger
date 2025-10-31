@@ -40,7 +40,7 @@ const Logo = () => {
 export default function Navbar() {
 
   return (
-    <header className="py-4 px-8 z-50 container">
+    <header className="py-4 px-8 z-50">
       <div className=" justify-between min-w-full mx-3 md:mx-0">
         <nav className="hidden justify-between md:flex">
           <div className="flex items-center gap-2">
