@@ -1,3 +1,4 @@
+"use  client";
 import { Menu } from "lucide-react";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { navigationMenuTriggerStyle } from "@/components/ui/navigation-menu";

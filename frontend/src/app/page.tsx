@@ -6,6 +6,7 @@ import AddCertForm from './components/AddCertForm'
 import GetCertForm from './components/GetCertForm'
 import WalletButton from './components/WalletButton'
 import { abi } from '../../abi'
+import Hero from './components/hero'
 
 export default function Home() {
   const contractAdress = "0xE9E24A0a85249ea7d28eb3F399C1aAcf9fC661b8"
@@ -13,7 +14,6 @@ export default function Home() {
   const [cert, setCert] = useState<any>()
   // @ts-ignore
   const web3ModalRef = useRef()
-
   const getProviderOrSigner = async (needSigner = false) => {
     // @ts-ignore
     const provider = await web3ModalRef.current.connect()
@@ -88,23 +88,7 @@ export default function Home() {
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-center bg-gray-100 p-24">
-      <div className="w-full max-w-4xl">
-        <div className="flex justify-end mb-8">
-
-          <WalletButton walletConnected={walletConnected} connectWallet={connectWallet} />
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-          <AddCertForm addCert={addCert} setCert={setCert} />
-          <GetCertForm getCert={getCert} setCert={setCert} />
-        </div>
-        {cert && (
-          <div className="mt-12 bg-white shadow-md rounded-lg p-8">
-            <h2 className="text-2xl font-bold mb-4 text-gray-800">Result</h2>
-            <pre className="bg-gray-200 p-4 rounded-lg overflow-x-auto">{JSON.stringify(cert, (key, value) =>
-              typeof value === "bigint" ? Number(value) : value, 2)}</pre>
-          </div>
-        )}
-      </div>
+      <Hero />
     </main>
   )
 }
