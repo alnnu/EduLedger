@@ -32,7 +32,10 @@ export default function RootLayout({
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
 
           <Navbar />
-          {children}
+
+          <main className="flex min-h-screen flex-col items-center justify-center bg-gray-100 p-24">
+            {children}
+          </main>
         </ThemeProvider>
       </body>
     </html>

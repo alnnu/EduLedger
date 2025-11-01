@@ -2,9 +2,6 @@
 import Web3Modal from 'web3modal'
 import { ethers } from 'ethers'
 import { useEffect, useRef, useState } from 'react'
-import AddCertForm from './components/AddCertForm'
-import GetCertForm from './components/GetCertForm'
-import WalletButton from './components/WalletButton'
 import { abi } from '../../abi'
 import Hero from './components/hero'
 
@@ -87,8 +84,6 @@ export default function Home() {
   }, [walletConnected])
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center bg-gray-100 p-24">
-      <Hero />
-    </main>
+    <Hero />
   )
 }
