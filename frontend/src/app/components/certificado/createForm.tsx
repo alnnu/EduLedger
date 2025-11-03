@@ -53,7 +53,7 @@ import {
   FileUploaderContent,
   FileUploaderItem
 } from "@/components/ui/file-upload"
-
+import Ipsf from "@/service/ipfs"
 
 interface Props {
   files: File[] | null;
@@ -99,9 +99,12 @@ export default function CertForm({ files, setFiles }: Props) {
     },
   })
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
+  async function onSubmit(values: z.infer<typeof formSchema>) {
     try {
       console.log(values);
+      const res = await Ipsf.createImage(values.imagem);
+
+      console.log(res);
       toast(
         <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
           <code className="text-white">{JSON.stringify(values, null, 2)}</code>
