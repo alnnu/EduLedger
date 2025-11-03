@@ -44,9 +44,9 @@ export default function Hero() {
 
 
   return (
-    <Card className="w-full sm:max-w-4xl py-10 gap-8">
+    <Card className="w-full sm:max-w-4xl py-10 gap-8 bg-black">
       <CardHeader className="mb-10 mt-5">
-        <CardTitle className="text-center text-4xl">Eduledger</CardTitle>
+        <CardTitle className="text-center text-4xl text-white">Eduledger</CardTitle>
         <CardDescription className="text-center text-xl text-white">
           Sistema para validar e emitir certificados digitais em uma rede Blockchain
         </CardDescription>
@@ -65,6 +65,7 @@ export default function Hero() {
                     aria-invalid={fieldState.invalid}
                     placeholder="Hash do certificado como 0x000...."
                     autoComplete="off"
+                    className="bg-white text-black"
                   />
                   {fieldState.invalid && (
                     <FieldError errors={[fieldState.error]} />
@@ -77,10 +78,10 @@ export default function Hero() {
       </CardContent>
       <CardFooter className="mb-5">
         <Field orientation="horizontal">
-          <Button type="button" variant="outline" onClick={() => form.reset()}>
+          <Button type="button" onClick={() => form.reset()}>
             Apagar
           </Button>
-          <Button type="submit" form="form-rhf-demo">
+          <Button type="submit" form="form-rhf-demo" variant={"outline"}>
             Verificar Certificado
           </Button>
         </Field>

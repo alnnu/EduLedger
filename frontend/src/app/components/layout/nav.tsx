@@ -17,14 +17,16 @@ import Image from "next/image";
 
 
 const TopMenu = [
-  { name: "Criar certificado", href: "/#" },
+  {
+    name: "Criar certificado", href: "/criar"
+  },
   { name: "certificados", href: "/#" },
 ];
 
 const Logo = () => {
   return (
     <Link href="/" className="flex space-x-2 py-3 items-center">
-      <h1 className="text-xl font-bold flex items-center gap-2">
+      <h1 className="text-xl font-bold flex items-center gap-2 text-white">
         <Image
           src="/favicon.ico"
           alt="logo"
@@ -41,7 +43,7 @@ const Logo = () => {
 export default function Navbar() {
 
   return (
-    <header className="py-4 px-8 z-50">
+    <header className="py-4 px-8 z-50 bg-black">
       <div className=" justify-between min-w-full mx-3 md:mx-0">
         <nav className="hidden justify-between md:flex">
           <div className="flex items-center gap-2">
@@ -55,7 +57,7 @@ export default function Navbar() {
                 <a
                   key={idx}
                   className={cn(
-                    "text-muted-foreground",
+                    "text-muted-foreground text-white",
                     navigationMenuTriggerStyle,
                     buttonVariants({ variant: "ghost" })
                   )}
