@@ -69,7 +69,7 @@ type FormValues = {
   curso: string,
   data: Date,
   instiduição: string,
-  imagem: string
+  imagem: File
 }
 
 const formSchema = z.object({
@@ -77,7 +77,7 @@ const formSchema = z.object({
   curso: z.string().min(1),
   data: z.date(),
   instiduição: z.string().min(1),
-  imagem: z.string(),
+  imagem: z.file(),
 });
 
 
@@ -120,10 +120,10 @@ export default function CertForm({ files, setFiles }: Props) {
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     try {
-      console.log(values);
-      const res = await Ipsf.createImage(values.imagem);
+      console.log(values.imagem);
+      //const res = await Ipsf.createImage(values.imagem);
 
-      console.log(res);
+      //console.log(res);
       toast(
         <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
           <code className="text-white">{JSON.stringify(values, null, 2)}</code>

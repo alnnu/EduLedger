@@ -3,7 +3,7 @@ import axios from "axios"
 
 const api = axios.create({
 
-  baseURL: "/api/ipfs"
+  baseURL: process.env.NEXT_PUBLIC_IPFS_URL
 })
 
 console.log("API Base URL:", api.defaults.baseURL);
