@@ -59,55 +59,20 @@ import {
 } from "@/components/ui/file-upload"
 import Ipsf from "@/service/ipfs"
 
-interface Props {
-  files: File[] | null;
-  setFiles: (files: File[] | null) => void;
-}
-
-type FormValues = {
-  nome: string,
-  curso: string,
-  data: Date,
-  instiduição: string,
-  imagem: File
-}
 
 const formSchema = z.object({
-  nome: z.string().min(1),
-  curso: z.string().min(1),
+  nome: z.string().min(1, "O nome é obrigatório"),
+  curso: z.string().min(1, "O curso é obrigatório"),
   data: z.date(),
-  instiduição: z.string().min(1),
-  imagem: z.file(),
+  instiduição: z.string().min(1, "A instituição é obrigatória"),
+  imagem: z.any()
+    .refine((file) => file instanceof File, `A imagem é obrigatória.`),
 });
 
 
-export default function CertForm({ files, setFiles }: Props) {
+export default function CertForm(/* { files, setFiles }: Props */) {
 
-  const [imagePreview, setImagePreview] = useState<string | null>(null);
-
-  useEffect(() => {
-    if (files && files.length > 0) {
-      const objectUrl = URL.createObjectURL(files[0]);
-      setImagePreview(objectUrl);
-
-      return () => {
-        URL.revokeObjectURL(objectUrl);
-      };
-    } else {
-      setImagePreview(null);
-    }
-  }, [files]);
-
-  const dropZoneConfig = {
-    accept: {
-      "image/*": [".jpg", ".jpeg", ".png"],
-    },
-    maxFiles: 1,
-    maxSize: 1024 * 1024 * 4,
-    multiple: false,
-  };
-
-  const form = useForm<z.infer<typeof formSchema>, any, FormValues>({
+  const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       nome: "",
@@ -118,20 +83,57 @@ export default function CertForm({ files, setFiles }: Props) {
     },
   })
 
+  // NOTE: Usamos `watch` do react-hook-form para observar o campo 'imagem'
+  const imageFile = form.watch("imagem");
+  const [imagePreview, setImagePreview] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (imageFile instanceof File) {
+      const objectUrl = URL.createObjectURL(imageFile);
+      setImagePreview(objectUrl);
+
+      return () => {
+        URL.revokeObjectURL(objectUrl);
+      };
+    } else {
+      setImagePreview(null);
+    }
+  }, [imageFile]);
+
+
+  const dropZoneConfig = {
+    accept: {
+      "image/*": [".jpg", ".jpeg", ".png"],
+    },
+    maxFiles: 1,
+    maxSize: 1024 * 1024 * 4,
+    multiple: false,
+  };
+
+
   async function onSubmit(values: z.infer<typeof formSchema>) {
     try {
       console.log(values.imagem);
-      //const res = await Ipsf.createImage(values.imagem);
 
-      //console.log(res);
+      const resImmage = await Ipsf.createImage(values.imagem);
+
+      if (resImmage.status == 200) {
+        const metadata = await Ipsf.createMetadata(resImmage.data.Hash, `diploma do curso ${values.curso}`, `Certificado do curso de ${values.curso} emitido por ${values.instiduição} na data de ${format(values.data, "PPP")} para o aluno ${values.nome}.`);
+
+        console.log("Metadata created:", metadata.data);
+      }
+
       toast(
-        <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-          <code className="text-white">{JSON.stringify(values, null, 2)}</code>
-        </pre>
+        <div>
+          <p>Formulário enviado com sucesso!</p>
+          <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
+            <code className="text-white">{JSON.stringify({ ...values, imagem: values.imagem.name }, null, 2)}</code>
+          </pre>
+        </div>
       );
     } catch (error) {
       console.error("Form submission error", error);
-      toast.error("Failed to submit the form. Please try again.");
+      toast.error("Falha ao enviar o formulário. Tente novamente.");
     }
   }
 
@@ -152,8 +154,7 @@ export default function CertForm({ files, setFiles }: Props) {
                   <FormLabel>Nome do aluno</FormLabel>
                   <FormControl>
                     <Input
-                      placeholder=""
-                      type=""
+                      placeholder="Ex: João da Silva"
                       {...field} />
                   </FormControl>
 
@@ -173,9 +174,7 @@ export default function CertForm({ files, setFiles }: Props) {
                   <FormLabel>Curso</FormLabel>
                   <FormControl>
                     <Input
-                      placeholder=""
-
-                      type=""
+                      placeholder="Ex: Engenharia de Software"
                       {...field} />
                   </FormControl>
 
@@ -210,7 +209,7 @@ export default function CertForm({ files, setFiles }: Props) {
                           {field.value ? (
                             format(field.value, "PPP")
                           ) : (
-                            <span>Pick a date</span>
+                            <span>Escolha uma data</span>
                           )}
                           <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
                         </Button>
@@ -221,10 +220,11 @@ export default function CertForm({ files, setFiles }: Props) {
                         mode="single"
                         selected={field.value}
                         onSelect={field.onChange}
+                        initialFocus
                       />
                     </PopoverContent>
                   </Popover>
-                  <FormDescription>data que o certificado foi emitido</FormDescription>
+                  <FormDescription>Data de emissão do certificado.</FormDescription>
                   <FormMessage />
                 </FormItem>
               )}
@@ -241,10 +241,10 @@ export default function CertForm({ files, setFiles }: Props) {
                   <FormLabel>Instituição</FormLabel>
                   <FormControl>
                     <Input
-                      type=""
+                      placeholder="Ex: Universidade Federal"
                       {...field} />
                   </FormControl>
-                  <FormDescription>instiuição que emitiu o certificado</FormDescription>
+                  <FormDescription>Instituição que emitiu o certificado.</FormDescription>
                   <FormMessage />
                 </FormItem>
               )}
@@ -256,16 +256,16 @@ export default function CertForm({ files, setFiles }: Props) {
         <FormField
           control={form.control}
           name="imagem"
-
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Imagem</FormLabel>
+              <FormLabel>Imagem do Certificado</FormLabel>
               <FormControl>
                 <FileUploader
-                  onValueChange={setFiles}
+                  onValueChange={(files) => {
+                    field.onChange(files?.[0]);
+                  }}
                   dropzoneOptions={dropZoneConfig}
                   className="relative bg-background rounded-lg p-2"
-                  {...field}
                 >
                   <FileInput
                     id="fileInput"
@@ -274,8 +274,8 @@ export default function CertForm({ files, setFiles }: Props) {
                     <div className="flex items-center justify-center flex-col p-8 w-full ">
                       <CloudUpload className='text-gray-500 w-10 h-10' />
                       <p className="mb-1 text-sm text-gray-500 dark:text-gray-400">
-                        <span className="font-semibold">Clica para fazer o upload</span>
-                        &nbsp; ou arra e solte
+                        <span className="font-semibold">Clique para fazer o upload</span>
+                        &nbsp; ou arraste e solte
                       </p>
                       <p className="text-xs text-gray-500 dark:text-gray-400">
                         SVG, PNG, JPG
@@ -283,23 +283,23 @@ export default function CertForm({ files, setFiles }: Props) {
                     </div>
                   </FileInput>
                   <FileUploaderContent>
-                    {files &&
-                      files.length > 0 &&
-                      files.map((file, i) => (
-                        <FileUploaderItem key={i} index={i}>
+                    {imageFile && (
+                      <>
+                        <FileUploaderItem index={0}>
                           <Paperclip className="h-4 w-4 stroke-current" />
-                          <span>{file.name}</span>
+                          <span>{imageFile.name}</span>
                         </FileUploaderItem>
-                      ))}
-                    {imagePreview && (
-                      <div className="mt-4 flex justify-center">
-                        <img src={imagePreview} alt="Preview" className="rounded-md max-h-48" />
-                      </div>
+                        {imagePreview && (
+                          <div className="mt-4 flex justify-center">
+                            <img src={imagePreview} alt="Preview" className="rounded-md max-h-48" />
+                          </div>
+                        )}
+                      </>
                     )}
                   </FileUploaderContent>
                 </FileUploader>
               </FormControl>
-              <FormDescription>imagem para a nft</FormDescription>
+              <FormDescription>Imagem que será usada no certificado.</FormDescription>
               <FormMessage />
             </FormItem>
           )}
