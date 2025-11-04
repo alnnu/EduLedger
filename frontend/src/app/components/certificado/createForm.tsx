@@ -1,5 +1,9 @@
 "use client"
 import {
+  useState,
+  useEffect
+} from "react"
+import {
   toast
 } from "sonner"
 import {
@@ -78,6 +82,21 @@ const formSchema = z.object({
 
 
 export default function CertForm({ files, setFiles }: Props) {
+
+  const [imagePreview, setImagePreview] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (files && files.length > 0) {
+      const objectUrl = URL.createObjectURL(files[0]);
+      setImagePreview(objectUrl);
+
+      return () => {
+        URL.revokeObjectURL(objectUrl);
+      };
+    } else {
+      setImagePreview(null);
+    }
+  }, [files]);
 
   const dropZoneConfig = {
     accept: {
@@ -272,6 +291,11 @@ export default function CertForm({ files, setFiles }: Props) {
                           <span>{file.name}</span>
                         </FileUploaderItem>
                       ))}
+                    {imagePreview && (
+                      <div className="mt-4 flex justify-center">
+                        <img src={imagePreview} alt="Preview" className="rounded-md max-h-48" />
+                      </div>
+                    )}
                   </FileUploaderContent>
                 </FileUploader>
               </FormControl>
