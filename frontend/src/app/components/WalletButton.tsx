@@ -1,19 +1,30 @@
 "use client"
 
-interface WalletButtonProps {
-    walletConnected: boolean;
-    connectWallet: () => Promise<void>;
+import { Button } from "@/components/ui/button";
+import { connectWallet } from "@/service/web3";
+
+import { useState } from "react";
+
+export default function WalletButton() {
+
+  const [walletConnected, setWalletConnected] = useState(false);
+
+  const handleConnectWallet = async () => {
+    const connected = await connectWallet();
+    setWalletConnected(connected);
+    console.log("Wallet connected:", connected);
   }
-  
-  export default function WalletButton({ walletConnected, connectWallet }: WalletButtonProps) {
-    return (
-      <button
-        onClick={connectWallet}
-        disabled={walletConnected}
-        className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline transition duration-300 disabled:bg-gray-400"
-      >
-        {walletConnected ? "Wallet Connected" : "Connect Wallet"}
-      </button>
-    );
-  }
-  
+
+
+  return (
+    <Button
+      onClick={handleConnectWallet}
+      disabled={walletConnected}
+      variant="outline"
+    >
+
+      {walletConnected ? "Carteira Conectada" : "Conectar Carteira"}
+      </Button>
+  );
+}
+

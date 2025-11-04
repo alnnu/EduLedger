@@ -12,6 +12,7 @@ import {
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import Image from "next/image";
+import WalletButton from "../WalletButton";
 
 
 
@@ -66,6 +67,7 @@ export default function Navbar() {
                   {menu.name}
                 </a>
               ))}
+              <WalletButton />
             </div>
           </div>
         </nav >
