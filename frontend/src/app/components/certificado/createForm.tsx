@@ -201,7 +201,7 @@ export default function CertForm(/* { files, setFiles }: Props */) {
                   <FormLabel>Curso</FormLabel>
                   <FormControl>
                     <Input
-                      placeholder="Ex: Engenharia de Software"
+                      placeholder="Ex: Ciência da Computação"
                       {...field} />
                   </FormControl>
 
@@ -268,7 +268,7 @@ export default function CertForm(/* { files, setFiles }: Props */) {
                   <FormLabel>Instituição</FormLabel>
                   <FormControl>
                     <Input
-                      placeholder="Ex: Universidade Federal"
+                      placeholder="Ex: Instituto Federal de Goiás"
                       {...field} />
                   </FormControl>
                   <FormDescription>Instituição que emitiu o certificado.</FormDescription>
