@@ -87,7 +87,6 @@ export default function CertForm(/* { files, setFiles }: Props */) {
     },
   })
 
-  // NOTE: Usamos `watch` do react-hook-form para observar o campo 'imagem'
   const imageFile = form.watch("imagem");
   const [imagePreview, setImagePreview] = useState<string | null>(null);
 
@@ -116,7 +115,7 @@ export default function CertForm(/* { files, setFiles }: Props */) {
 
   const printError = (err: string) => {
     console.error(`Erro: ${err}`);
-    toast.error("falha ao enviar o formulário. tente novamente.");
+    toast.error("falha ao enviar o certificado. tente novamente.");
   }
 
 
@@ -142,6 +141,11 @@ export default function CertForm(/* { files, setFiles }: Props */) {
 
           const cert = await addCertService(dados);
 
+          toast.success("Certificado enviado com sucesso!", {
+            description: `Hash do do certificado: ${resMetadata.data.Hash}`,
+          });
+
+
           console.log("Certificado adicionado com sucesso:", cert);
         } else {
           printError("Erro ao criar metadata no IPFS");
@@ -150,17 +154,9 @@ export default function CertForm(/* { files, setFiles }: Props */) {
         printError("Erro ao fazer upload da imagem no IPFS");
       }
 
-      toast(
-        <div>
-          <p>Formulário enviado com sucesso!</p>
-          <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-            <code className="text-white">{JSON.stringify({ ...values, imagem: values.imagem.name }, null, 2)}</code>
-          </pre>
-        </div>
-      );
     } catch (error) {
       console.error("Form submission error", error);
-      toast.error("falha ao enviar o formulário. tente novamente.");
+      toast.error("falha ao enviar o certificado. tente novamente.");
     }
   }
 

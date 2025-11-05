@@ -3,7 +3,7 @@ import { ethers } from 'ethers'
 import { abi } from '../../abi'
 import { addCertType } from '@/schema/certSchema';
 
-const contractAddress = "0x3D26F81A9d5a11636d75C1D6f8E98C8dD6Fd5231";
+const contractAddress = "0x22d05daccd046f4eef2A2b9F7C9512c9D6574C32";
 
 let web3Modal: Web3Modal;
 
