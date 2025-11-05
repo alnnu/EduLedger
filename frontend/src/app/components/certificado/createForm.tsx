@@ -58,13 +58,17 @@ import {
   FileUploaderItem
 } from "@/components/ui/file-upload"
 import Ipsf from "@/service/ipfs"
+import { addCertService } from "@/service/web3"
+import { addCertType } from "@/schema/certSchema"
+
+
 
 
 const formSchema = z.object({
   nome: z.string().min(1, "O nome é obrigatório"),
   curso: z.string().min(1, "O curso é obrigatório"),
   data: z.date(),
-  instiduição: z.string().min(1, "A instituição é obrigatória"),
+  instituicao: z.string().min(1, "A instituição é obrigatória"),
   imagem: z.any()
     .refine((file) => file instanceof File, `A imagem é obrigatória.`),
 });
@@ -78,7 +82,7 @@ export default function CertForm(/* { files, setFiles }: Props */) {
       nome: "",
       curso: "",
       data: new Date(),
-      instiduição: "",
+      instituicao: "",
       imagem: undefined,
     },
   })
@@ -110,6 +114,11 @@ export default function CertForm(/* { files, setFiles }: Props */) {
     multiple: false,
   };
 
+  const printError = (err: string) => {
+    console.error(`Erro: ${err}`);
+    toast.error("falha ao enviar o formulário. tente novamente.");
+  }
+
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     try {
@@ -118,9 +127,27 @@ export default function CertForm(/* { files, setFiles }: Props */) {
       const resImmage = await Ipsf.createImage(values.imagem);
 
       if (resImmage.status == 200) {
-        const metadata = await Ipsf.createMetadata(resImmage.data.Hash, `diploma do curso ${values.curso}`, `Certificado do curso de ${values.curso} emitido por ${values.instiduição} na data de ${format(values.data, "PPP")} para o aluno ${values.nome}.`);
+        const resMetadata = await Ipsf.createMetadata(resImmage.data.Hash, `diploma do curso ${values.curso}`, `Certificado do curso de ${values.curso} emitido por ${values.instituicao} na data de ${format(values.data, "PPP")} para o aluno ${values.nome}.`);
 
-        console.log("Metadata created:", metadata.data);
+        if (resMetadata.status == 200) {
+
+          const dados: addCertType = {
+            instituicao: values.instituicao,
+            data: values.data.toISOString(),
+            aluno: values.nome,
+            hashImagen: resImmage.data.Hash,
+            hashMetadado: resMetadata.data.Hash,
+
+          }
+
+          const cert = await addCertService(dados);
+
+          console.log("Certificado adicionado com sucesso:", cert);
+        } else {
+          printError("Erro ao criar metadata no IPFS");
+        }
+      } else {
+        printError("Erro ao fazer upload da imagem no IPFS");
       }
 
       toast(
@@ -133,7 +160,7 @@ export default function CertForm(/* { files, setFiles }: Props */) {
       );
     } catch (error) {
       console.error("Form submission error", error);
-      toast.error("Falha ao enviar o formulário. Tente novamente.");
+      toast.error("falha ao enviar o formulário. tente novamente.");
     }
   }
 
@@ -235,7 +262,7 @@ export default function CertForm(/* { files, setFiles }: Props */) {
 
             <FormField
               control={form.control}
-              name="instiduição"
+              name="instituicao"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Instituição</FormLabel>
