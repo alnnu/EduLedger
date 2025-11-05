@@ -3,7 +3,7 @@ import { ethers } from 'ethers'
 import { abi } from '../../abi'
 import { addCertType } from '@/schema/certSchema';
 
-const contractAddress = "0x22d05daccd046f4eef2A2b9F7C9512c9D6574C32";
+const contractAddress = "0xD213637516BF76284624846Ba0b5b9C34Dc7C385";
 
 let web3Modal: Web3Modal;
 
@@ -51,9 +51,9 @@ export const addCertService = async (dados: addCertType) => {
   return tx;
 };
 
-export const getCertService = async (certId: number) => {
+export const getCertService = async (certHash: string) => {
   const provider = await getProviderOrSigner();
   const certContract = new ethers.Contract(contractAddress, abi, provider);
-  const certData = await certContract.getCert(certId);
+  const certData = await certContract.getCert(certHash);
   return certData;
 };

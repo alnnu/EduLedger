@@ -21,6 +21,7 @@ import {
   FieldGroup,
 } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
+import { getCertService } from "@/service/web3"
 
 
 export default function Hero() {
@@ -38,8 +39,10 @@ export default function Hero() {
     },
   })
 
-  function onSubmit(data: z.infer<typeof formSchema>) {
-    console.log(data)
+  async function onSubmit(data: z.infer<typeof formSchema>) {
+    const result = await getCertService(data.hash);
+
+    console.log(result);
   }
 
 

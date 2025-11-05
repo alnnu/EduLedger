@@ -147,6 +147,7 @@ export default function CertForm(/* { files, setFiles }: Props */) {
 
 
           console.log("Certificado adicionado com sucesso:", cert);
+          console.log("Hash da imagem:", resMetadata.data.Hash);
         } else {
           printError("Erro ao criar metadata no IPFS");
         }

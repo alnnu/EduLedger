@@ -13,9 +13,9 @@ export const abi = [
   {
     "inputs": [
       {
-        "internalType": "string",
+        "internalType": "uint256",
         "name": "",
-        "type": "string"
+        "type": "uint256"
       }
     ],
     "name": "certs",
@@ -251,6 +251,71 @@ export const abi = [
     "constant": true
   },
   {
+    "inputs": [],
+    "name": "getAllCerts",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "string",
+            "name": "subject",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "course",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "date",
+            "type": "string"
+          },
+          {
+            "components": [
+              {
+                "internalType": "string",
+                "name": "issuerName",
+                "type": "string"
+              },
+              {
+                "internalType": "address",
+                "name": "publicKey",
+                "type": "address"
+              }
+            ],
+            "internalType": "struct Cert.cretencials",
+            "name": "credential",
+            "type": "tuple"
+          },
+          {
+            "components": [
+              {
+                "internalType": "string",
+                "name": "imageHash",
+                "type": "string"
+              },
+              {
+                "internalType": "string",
+                "name": "metadataHash",
+                "type": "string"
+              }
+            ],
+            "internalType": "struct Cert.display",
+            "name": "displayInfo",
+            "type": "tuple"
+          }
+        ],
+        "internalType": "struct Cert.cert[]",
+        "name": "",
+        "type": "tuple[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function",
+    "constant": true
+  },
+  {
     "inputs": [
       {
         "internalType": "string",
@@ -276,3 +341,277 @@ export const abi = [
     "constant": true
   }
 ]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          
+        
+      
+      
+      
+        
+        
+          
+          
+    
+
+  
+    
+      
+      
+      
+    
+    
+      
+        
+        
+          
+          
+          
+              
+            
+          
+          
+          
+            
+            
+            
+            
+              
+                
+                
+                
+                
+                  
+                    
+                    
+                    
+                  
+                  
+                    
+                    
+                    
+                  
+                
+              
+              
+                
+                
+                
+                
+                  
+                    
+                    
+                    
+                  
+                  
+                    
+                    
+                    
+                  
+                
+              
+              
+                
+                
+                  
+                  
+                    
+            
+            
+            
+            
+              
+                
+                
+                
+              
+            
+          
+          
+          
+            
+    
+    
+    
+    
+      
+      
+      
+          
+        
+      
+      
+      
+        
+        
+        
+        
+          
+            
+            
+            
+            
+              
+                
+                
+                
+              
+              
+                
+                
+                  
+                  
+                
+              
+              
+                
+                
+                
+                
+                  
+                    
+                    
+                    
+                  
+                  
+                    
+                    
+                    
+                  
+                
