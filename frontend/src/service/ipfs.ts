@@ -32,6 +32,10 @@ class Ipfs {
       }
     })
   }
+
+  getObject(cid: string) {
+    return api.post(`/cat?arg=${cid}`)
+  }
 }
 
 export default new Ipfs();
