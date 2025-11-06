@@ -21,10 +21,12 @@ import {
   FieldGroup,
 } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
-import { getCertService } from "@/service/web3"
+import { useRouter } from "next/navigation"
 
 
 export default function Hero() {
+
+  const router = useRouter();
 
   const formSchema = z.object({
     hash: z
@@ -40,9 +42,7 @@ export default function Hero() {
   })
 
   async function onSubmit(data: z.infer<typeof formSchema>) {
-    const result = await getCertService(data.hash);
-
-    console.log(result);
+    router.push(`/certificado/${data.hash}`);
   }
 
 

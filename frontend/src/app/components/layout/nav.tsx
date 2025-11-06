@@ -21,7 +21,7 @@ const TopMenu = [
   {
     name: "Criar certificado", href: "/criar"
   },
-  { name: "certificados", href: "/#" },
+  { name: "certificados", href: "/certificado" },
 ];
 
 const Logo = () => {

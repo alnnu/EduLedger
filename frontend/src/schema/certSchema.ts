@@ -5,3 +5,20 @@ export type addCertType = {
   hashImagen: string;
   hashMetadado: string;
 }
+
+export type CertType = {
+  aluno: string;
+  curso: string;
+  data: string;
+  credenciais: {
+    instituicao: string;
+    carteira: string;
+  }
+  display: {
+    imagem: string;
+    metadado: string;
+  }
+}
+
+
+
