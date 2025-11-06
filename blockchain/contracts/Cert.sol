@@ -6,29 +6,26 @@ import "./NftIPFS.sol";
 contract Cert {
   
     struct cert {
-        string[] context;
-        uint256 id;
-        string[] certType;
-        string issuer;
-        string issuernceDate;
-        cretencials credentialSubject;
+        string subject;
+        string course;
+        string date;
+        cretencials credential;
         display displayInfo;
     }
     struct cretencials {
-        string id;
-        string name;
-        string email;
+        string issuerName;
         address publicKey;
     }
 
     struct display {
-        string contentType;
-        string content;
+        string imageHash;
+        string metadataHash;
     }
   
-    mapping (uint256 => cert) public certs;
+    mapping (uint => cert) public certs;
 
     uint certCount;
+
     NftIPFS public nftContract;
 
     constructor (address nftAddress) {
@@ -36,29 +33,47 @@ contract Cert {
         nftContract = NftIPFS(nftAddress);
     }
 
-    function addCert() payable external returns (cert memory) {
+    function addCert(string memory _issuerName, string memory _date, string memory _subject, string memory _course, string memory _imageHash, string memory _metadataHash) payable external returns (cert memory) {
         
+
         cert storage newCert = certs[certCount];
 
-        newCert.id = certCount;
-        newCert.context.push("https://www.w3.org/2018/credentials/v1");
-        newCert.certType.push("teste");
-        newCert.issuer = "Issuer Teste";
-        newCert.issuernceDate = "2023-10-01";
-        newCert.credentialSubject.id = "subject1";
-        newCert.credentialSubject.name = "Subject Name";
-        newCert.credentialSubject.email = "test@test";
-        newCert.credentialSubject.publicKey = address(msg.sender);
-        newCert.displayInfo.contentType = "application/json";
-        newCert.displayInfo.content = "{msg: teste}";
+        newCert.date = _date;
+        newCert.subject = _subject;
+        newCert.course = _course;
+        newCert.credential.issuerName = _issuerName;
+        newCert.credential.publicKey = address(msg.sender);
+        newCert.displayInfo.imageHash = _imageHash;
+        newCert.displayInfo.metadataHash = _metadataHash;
 
-        nftContract.mintCertificado(msg.sender);
+        nftContract.mintCertificado(msg.sender ,_metadataHash);
 
         certCount++;
         return newCert;
     }
-    function getCert(uint id) view external returns(cert memory) {
-        require(id < certCount, "Id nao valido");
-        return certs[id];
+    function getCert(string memory _metadataHash) view external returns(cert memory) {
+        for (uint i = 0; i < certCount; i++) {
+          if(compareStrings(certs[i].displayInfo.metadataHash, _metadataHash)) {
+            return certs[i];
+          }
+        }
+        revert("certiicado nao encontrado");
     }
+
+    function getAllCerts() view external returns(cert[] memory) {
+        cert[] memory allCerts = new cert[](certCount);
+
+        for (uint i = 0; i < certCount; i++) {
+            allCerts[i] = certs[i];
+        }
+
+        return allCerts;
+    }
+
+  function compareStrings(string memory str1, string memory str2) public pure returns (bool) {
+        return keccak256(abi.encodePacked(str1)) == keccak256(abi.encodePacked(str2));
+    }
+    
 }
+
+// problemas: não vejo como comparar se o cert ja existe, e possivel problema de performace( passando de O(1) para O(n) em getCert)

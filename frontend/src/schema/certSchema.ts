@@ -1,5 +1,6 @@
 export type addCertType = {
   instituicao: string;
+  curso: string;
   data: string;
   aluno: string;
   hashImagen: string;

@@ -132,6 +132,7 @@ export default function CertForm(/* { files, setFiles }: Props */) {
 
           const dados: addCertType = {
             instituicao: values.instituicao,
+            curso: values.curso,
             data: values.data.toISOString(),
             aluno: values.nome,
             hashImagen: resImmage.data.Hash,

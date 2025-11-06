@@ -1,6 +1,6 @@
 "use client"
 import { getCertService } from "@/service/web3"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useParams } from "next/navigation"
 
 export default function CertificadoIdPage() {
@@ -11,9 +11,22 @@ export default function CertificadoIdPage() {
   const fetchData = async () => {
     const certService = await getCertService(`${hash}`);
     console.log(certService);
+
+    setLoading(false);
   }
 
-  fetchData();
+
+  useEffect(() => {
+    if (hash) fetchData();
+  }, [hash, fetchData]);
+
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <p>Carregando...</p>
+      </div>
+    )
+  }
   return (
     <div>
       em breve

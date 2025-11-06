@@ -4,7 +4,7 @@ import { abi } from '../../abi'
 import { addCertType } from '@/schema/certSchema';
 import { convertCertToObj } from '@/lib/cert';
 
-const contractAddress = "0xD213637516BF76284624846Ba0b5b9C34Dc7C385";
+const contractAddress = "0x6a9c11d9a5d0B3D3b460d399553f66bB7BACbB26";
 
 let web3Modal: Web3Modal;
 
@@ -46,7 +46,7 @@ export const connectWallet = async () => {
 export const addCertService = async (dados: addCertType) => {
   const signer = await getProviderOrSigner(true);
   const certContract = new ethers.Contract(contractAddress, abi, signer);
-  const tx = await certContract.addCert(dados.instituicao, dados.data, dados.aluno, dados.hashImagen, dados.hashMetadado, {
+  const tx = await certContract.addCert(dados.instituicao, dados.data, dados.aluno, dados.curso, dados.hashImagen, dados.hashMetadado, {
     gasLimit: 5000000,
   });
   return tx;
