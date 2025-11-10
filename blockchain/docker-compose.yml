@@ -1,0 +1,44 @@
+services:
+  truffle:
+    container_name: truffle
+    build:
+      context: .
+      target: truffle
+    depends_on:
+      - ganache
+    networks:
+      - web3
+    volumes:
+      - .:/home/app
+
+  ganache:
+    container_name: ganache
+    build:
+      context: .
+      target: ganache
+    command: --host 0.0.0.0
+    ports:
+      - 8545:8545
+    networks:
+      - web3
+
+  ipfs_host:
+    image: ipfs/kubo:latest 
+    container_name: ipfs
+    restart: unless-stopped
+    ports:
+      - "4001:4001/tcp" 
+      - "4001:4001/udp" 
+      - "127.0.0.1:8080:8080" 
+      - "127.0.0.1:5001:5001"
+    volumes:
+      - ipfs_data:/data/ipfs 
+    environment:
+      - IPFS_PROFILE=server
+      - IPFS_TELEMETRY=off
+
+volumes:
+  ipfs_data:
+  ipfs_staging:
+networks:
+  web3:
