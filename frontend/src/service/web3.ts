@@ -2,9 +2,9 @@ import Web3Modal from 'web3modal'
 import { ethers } from 'ethers'
 import { abi } from '../../abi'
 import { addCertType } from '@/schema/certSchema';
-import { convertCertToObj } from '@/lib/cert';
+import { convertCertToObj, bachConvertCertToObj } from '@/lib/cert';
 
-const contractAddress = "0x6a9c11d9a5d0B3D3b460d399553f66bB7BACbB26";
+const contractAddress = "0x0D2b766c3a814EC9f17214841838856C2f80F216";
 
 let web3Modal: Web3Modal;
 
@@ -61,3 +61,14 @@ export const getCertService = async (certHash: string) => {
 
   return certObj;
 };
+
+export const getAllCertsService = async () => {
+  const provider = await getProviderOrSigner();
+  const certContract = new ethers.Contract(contractAddress, abi, provider);
+  const certData = await certContract.getAllCerts();
+
+  const certsArray = bachConvertCertToObj(certData);
+
+  return certsArray;
+}
+
