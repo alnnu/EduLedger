@@ -9,3 +9,7 @@ services:
       - /app/.next
     env_file:
       - ./.env
+    networks:
+        - web3
+networks:
+  web3:

@@ -77,7 +77,7 @@ export default function CertificadoIdPage() {
       </div>
     );
   }
-
+  // console.log(metadado.image);
 
   return (
     <div className="min-h-screen bg-gray-100 p-4">
