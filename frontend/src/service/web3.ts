@@ -21,9 +21,10 @@ const getProviderOrSigner = async (needSigner = false) => {
   const web3Provider = new ethers.BrowserProvider(provider);
   const { chainId } = await web3Provider.getNetwork();
 
-  if (chainId !== 4n && chainId !== 1337n) {
-    window.alert('Change the network to Rinkeby or ganache');
-    throw new Error('Change network to Rinkeby or ganache');
+  if (chainId !== 141319n) {
+    console.log(chainId);
+    window.alert('Change the network');
+    throw new Error('Change network');
   }
 
   if (needSigner) {
@@ -67,8 +68,11 @@ export const getCertService = async (certHash: string) => {
 export const getAllCertsService = async () => {
   const provider = await getProviderOrSigner();
   const certContract = new ethers.Contract(contractAddress, abi, provider);
+
   const certData = await certContract.getAllCerts();
 
+
+  console.log(certData);
   const certsArray = bachConvertCertToObj(certData);
 
   return certsArray;

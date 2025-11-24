@@ -73,8 +73,7 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function",
-      "constant": true
+      "type": "function"
     },
     {
       "inputs": [],
@@ -87,8 +86,7 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function",
-      "constant": true
+      "type": "function"
     },
     {
       "inputs": [
@@ -183,8 +181,7 @@
         }
       ],
       "stateMutability": "payable",
-      "type": "function",
-      "payable": true
+      "type": "function"
     },
     {
       "inputs": [
@@ -254,8 +251,7 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function",
-      "constant": true
+      "type": "function"
     },
     {
       "inputs": [],
@@ -319,8 +315,7 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function",
-      "constant": true
+      "type": "function"
     },
     {
       "inputs": [
@@ -344,8 +339,7 @@
         }
       ],
       "stateMutability": "pure",
-      "type": "function",
-      "constant": true
+      "type": "function"
     }
   ],
   "metadata": "{\"compiler\":{\"version\":\"0.8.21+commit.d9974bed\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"nftAddress\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"_issuerName\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"_date\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"_subject\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"_course\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"_imageHash\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"_metadataHash\",\"type\":\"string\"}],\"name\":\"addCert\",\"outputs\":[{\"components\":[{\"internalType\":\"string\",\"name\":\"subject\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"course\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"date\",\"type\":\"string\"},{\"components\":[{\"internalType\":\"string\",\"name\":\"issuerName\",\"type\":\"string\"},{\"internalType\":\"address\",\"name\":\"publicKey\",\"type\":\"address\"}],\"internalType\":\"struct Cert.cretencials\",\"name\":\"credential\",\"type\":\"tuple\"},{\"components\":[{\"internalType\":\"string\",\"name\":\"imageHash\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"metadataHash\",\"type\":\"string\"}],\"internalType\":\"struct Cert.display\",\"name\":\"displayInfo\",\"type\":\"tuple\"}],\"internalType\":\"struct Cert.cert\",\"name\":\"\",\"type\":\"tuple\"}],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"certs\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"subject\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"course\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"date\",\"type\":\"string\"},{\"components\":[{\"internalType\":\"string\",\"name\":\"issuerName\",\"type\":\"string\"},{\"internalType\":\"address\",\"name\":\"publicKey\",\"type\":\"address\"}],\"internalType\":\"struct Cert.cretencials\",\"name\":\"credential\",\"type\":\"tuple\"},{\"components\":[{\"internalType\":\"string\",\"name\":\"imageHash\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"metadataHash\",\"type\":\"string\"}],\"internalType\":\"struct Cert.display\",\"name\":\"displayInfo\",\"type\":\"tuple\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"str1\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"str2\",\"type\":\"string\"}],\"name\":\"compareStrings\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"pure\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getAllCerts\",\"outputs\":[{\"components\":[{\"internalType\":\"string\",\"name\":\"subject\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"course\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"date\",\"type\":\"string\"},{\"components\":[{\"internalType\":\"string\",\"name\":\"issuerName\",\"type\":\"string\"},{\"internalType\":\"address\",\"name\":\"publicKey\",\"type\":\"address\"}],\"internalType\":\"struct Cert.cretencials\",\"name\":\"credential\",\"type\":\"tuple\"},{\"components\":[{\"internalType\":\"string\",\"name\":\"imageHash\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"metadataHash\",\"type\":\"string\"}],\"internalType\":\"struct Cert.display\",\"name\":\"displayInfo\",\"type\":\"tuple\"}],\"internalType\":\"struct Cert.cert[]\",\"name\":\"\",\"type\":\"tuple[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"_metadataHash\",\"type\":\"string\"}],\"name\":\"getCert\",\"outputs\":[{\"components\":[{\"internalType\":\"string\",\"name\":\"subject\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"course\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"date\",\"type\":\"string\"},{\"components\":[{\"internalType\":\"string\",\"name\":\"issuerName\",\"type\":\"string\"},{\"internalType\":\"address\",\"name\":\"publicKey\",\"type\":\"address\"}],\"internalType\":\"struct Cert.cretencials\",\"name\":\"credential\",\"type\":\"tuple\"},{\"components\":[{\"internalType\":\"string\",\"name\":\"imageHash\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"metadataHash\",\"type\":\"string\"}],\"internalType\":\"struct Cert.display\",\"name\":\"displayInfo\",\"type\":\"tuple\"}],\"internalType\":\"struct Cert.cert\",\"name\":\"\",\"type\":\"tuple\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"nftContract\",\"outputs\":[{\"internalType\":\"contract NftIPFS\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/Cert.sol\":\"Cert\"},\"evmVersion\":\"shanghai\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"@openzeppelin/contracts/interfaces/IERC165.sol\":{\"keccak256\":\"0x0afcb7e740d1537b252cb2676f600465ce6938398569f09ba1b9ca240dde2dfc\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://1c299900ac4ec268d4570ecef0d697a3013cd11a6eb74e295ee3fbc945056037\",\"dweb:/ipfs/Qmab9owJoxcA7vJT5XNayCMaUR1qxqj1NDzzisduwaJMcZ\"]},\"@openzeppelin/contracts/interfaces/IERC4906.sol\":{\"keccak256\":\"0x856ca1885aec23d54da3f2760b5d216d1b28ad20f798000336375a30dbbc1558\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://dc725c462ccbf284432d3123ab8c9bab24903730cae227ae4945878039d2fe54\",\"dweb:/ipfs/QmdiEVMvm8njp96dm2s4mThYBD74tY59mNP6s7CzKkGHAh\"]},\"@openzeppelin/contracts/interfaces/IERC721.sol\":{\"keccak256\":\"0xca34c490d41c332106d30b657f00dc028532cb6b9fef2b1729670ce476b36bce\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://ef5e7685d50ed8aae2104a7eb2c31ae5a3b508f24fadfa7611f92f819201aee9\",\"dweb:/ipfs/QmYbTD32FPrEfP1hkniQmRxVUWp8GTSqFV1Bhwx1HVirse\"]},\"@openzeppelin/contracts/interfaces/draft-IERC6093.sol\":{\"keccak256\":\"0x19fdfb0f3b89a230e7dbd1cf416f1a6b531a3ee5db4da483f946320fc74afc0e\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://3490d794728f5bfecb46820431adaff71ba374141545ec20b650bb60353fac23\",\"dweb:/ipfs/QmPsfxjVpMcZbpE7BH93DzTpEaktESigEw4SmDzkXuJ4WR\"]},\"@openzeppelin/contracts/token/ERC721/ERC721.sol\":{\"keccak256\":\"0x6ead281d4569c26b3dee7313aefff24add906f3600b57d8aef1255a17d6b34e5\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://aec0f9c9f14f829353663e1946bf0ea00a1771ff6ddb4f7cbe14893397b4b55c\",\"dweb:/ipfs/QmVMR3SdijdM2BpL9Yp3u7Riaxqgs1FnZ1Rfg2CMjKGtVS\"]},\"@openzeppelin/contracts/token/ERC721/IERC721.sol\":{\"keccak256\":\"0xf78f05f3b8c9f75570e85300d7b4600d7f6f6a198449273f31d44c1641adb46f\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://e28b872613b45e0e801d4995aa4380be2531147bfe2d85c1d6275f1de514fba3\",\"dweb:/ipfs/QmeeFcfShHYaS3BdgVj78nxR28ZaVUwbvr66ud8bT6kzw9\"]},\"@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol\":{\"keccak256\":\"0x88cd5e3bee2e8c36b8d9058fbcaa81ad5704281b25634122234b55ea853d8055\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://8dc7e7ab5b8ea36c15027ab04221b05d1c970f47a53e9fd47ead8ca665d49c7e\",\"dweb:/ipfs/Qmeeph7fsDyfRr8vb2L8KcDEmKPb224TAayMvgqgGAnqpL\"]},\"@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol\":{\"keccak256\":\"0xb9dc602a845c73d11f1fe38039c0c2cf70fedd2d4afd877c0ed2d0383ffaa232\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://59eb46224e996c2f9ecb9a821e65b920c2ecfe9df734613c3df9831de373491c\",\"dweb:/ipfs/QmTsZzJTqRavv64zyaWovcWkUNwfU3uo8uiUjrMFEm8MMj\"]},\"@openzeppelin/contracts/token/ERC721/extensions/IERC721Metadata.sol\":{\"keccak256\":\"0xf46268c37522320bb2119a5a394bc5c739a95c0c574c8d08e8c643f4d06e5c76\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://517e4b295f35b9947c72ad7379a6089439ece7bb6f4a2ea0a159da13046c039e\",\"dweb:/ipfs/QmZXzkSfLUbvujig3zVbpDHykpHhqLpvQtdiN3B5j4TA3u\"]},\"@openzeppelin/contracts/token/ERC721/utils/ERC721Utils.sol\":{\"keccak256\":\"0xc2dfdc8fbc8fdb142575c90568e237b809a1feaccff23e32d00131887a08dc36\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://dbc1d283ee77da43d61661b5ba1adeb427d6a6224335494a9a857dce41d9f1d6\",\"dweb:/ipfs/QmTnA35z7XzkxFSRUqB6CGVH1nhmvajwnDNfA5PiKmYuCi\"]},\"@openzeppelin/contracts/utils/Context.sol\":{\"keccak256\":\"0x493033a8d1b176a037b2cc6a04dad01a5c157722049bbecf632ca876224dd4b2\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://6a708e8a5bdb1011c2c381c9a5cfd8a9a956d7d0a9dc1bd8bcdaf52f76ef2f12\",\"dweb:/ipfs/Qmax9WHBnVsZP46ZxEMNRQpLQnrdE4dK8LehML1Py8FowF\"]},\"@openzeppelin/contracts/utils/Panic.sol\":{\"keccak256\":\"0xf7fe324703a64fc51702311dc51562d5cb1497734f074e4f483bfb6717572d7a\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://c6a5ff4f9fd8649b7ee20800b7fa387d3465bd77cf20c2d1068cd5c98e1ed57a\",\"dweb:/ipfs/QmVSaVJf9FXFhdYEYeCEfjMVHrxDh5qL4CGkxdMWpQCrqG\"]},\"@openzeppelin/contracts/utils/Strings.sol\":{\"keccak256\":\"0xad148d59f05165f9217d0a9e1ac8f772abb02ea6aaad8a756315c532bf79f9f4\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://15e3599867c2182f5831e9268b274b2ef2047825837df6b4d81c9e89254b093e\",\"dweb:/ipfs/QmZbL7XAYr5RmaNaooPgZRmcDXaudfsYQfYD9y5iAECvpS\"]},\"@openzeppelin/contracts/utils/introspection/ERC165.sol\":{\"keccak256\":\"0x2d9dc2fe26180f74c11c13663647d38e259e45f95eb88f57b61d2160b0109d3e\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://81233d1f98060113d9922180bb0f14f8335856fe9f339134b09335e9f678c377\",\"dweb:/ipfs/QmWh6R35SarhAn4z2wH8SU456jJSYL2FgucfTFgbHJJN4E\"]},\"@openzeppelin/contracts/utils/introspection/IERC165.sol\":{\"keccak256\":\"0x8891738ffe910f0cf2da09566928589bf5d63f4524dd734fd9cedbac3274dd5c\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://971f954442df5c2ef5b5ebf1eb245d7105d9fbacc7386ee5c796df1d45b21617\",\"dweb:/ipfs/QmadRjHbkicwqwwh61raUEapaVEtaLMcYbQZWs9gUkgj3u\"]},\"@openzeppelin/contracts/utils/math/Math.sol\":{\"keccak256\":\"0x1225214420c83ebcca88f2ae2b50f053aaa7df7bd684c3e878d334627f2edfc6\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://6c5fab4970634f9ab9a620983dc1c8a30153981a0b1a521666e269d0a11399d3\",\"dweb:/ipfs/QmVRnBC575MESGkEHndjujtR7qub2FzU9RWy9eKLp4hPZB\"]},\"@openzeppelin/contracts/utils/math/SafeCast.sol\":{\"keccak256\":\"0x195533c86d0ef72bcc06456a4f66a9b941f38eb403739b00f21fd7c1abd1ae54\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://b1d578337048cad08c1c03041cca5978eff5428aa130c781b271ad9e5566e1f8\",\"dweb:/ipfs/QmPFKL2r9CBsMwmUqqdcFPfHZB2qcs9g1HDrPxzWSxomvy\"]},\"@openzeppelin/contracts/utils/math/SignedMath.sol\":{\"keccak256\":\"0xb1970fac7b64e6c09611e6691791e848d5e3fe410fa5899e7df2e0afd77a99e3\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://db5fbb3dddd8b7047465b62575d96231ba8a2774d37fb4737fbf23340fabbb03\",\"dweb:/ipfs/QmVUSvooZKEdEdap619tcJjTLcAuH6QBdZqAzWwnAXZAWJ\"]},\"project:/contracts/Cert.sol\":{\"keccak256\":\"0x4f3c9c88321c5cecd35ffae78538403e438b85acfb8e98ba111fcc21973e2ea0\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://71f8b09464cfc14428c46f0d8dc844bc6eaf680840c8d88df577c1ef139b2448\",\"dweb:/ipfs/QmPSMGfwQt8GDWKT4o18mnCbc9hMjpZgPGjKhhYpD11vEh\"]},\"project:/contracts/NftIPFS.sol\":{\"keccak256\":\"0x559dcb112b0f41a882f5e8a367ee22c74f4f3245be575dbc07640b14a64205ef\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://af0acbeb073ae4cbec4ad34aa5f909e450539750065a2a416b81059af85f61e4\",\"dweb:/ipfs/QmRfLDiVVbYLmHGxYhQvYMM4ruA99MmmtdtyC1PHnsCjSb\"]}},\"version\":1}",
@@ -20134,6 +20128,12 @@
     "version": "0.8.21+commit.d9974bed.Emscripten.clang"
   },
   "networks": {
+    "141319": {
+      "events": {},
+      "links": {},
+      "address": "0x3e1b0CE3a6F5296f9A9ac75E62C73673Ec847F2e",
+      "transactionHash": "0x3708c72eb570a264d98f9e1350c1a834065285ba17067fc9577b53015bc6e1e0"
+    },
     "1762293103459": {
       "events": {},
       "links": {},
@@ -20235,11 +20235,40 @@
       "links": {},
       "address": "0x4482AD27687F5897384DBC8fBb48a267b6e7d709",
       "transactionHash": "0x98d48ad35b1e7a051831677d26fe925d8078e8eefd368974f2444a23abde1e25"
+    },
+    "1762868125470": {
+      "events": {},
+      "links": {},
+      "address": "0xb4d5823efb9214B857769C7F1da47364E2e2224c",
+      "transactionHash": "0xe6eb5eefe7297c8b96663d1673f238793100d2453ebf31dd4b05b31024c0b283"
+    },
+    "1762868306235": {
+      "events": {},
+      "links": {},
+      "address": "0x634bE238fa1B88f398e0133Cd1BbcC30Da1270dC",
+      "transactionHash": "0x06173b44ae183945179aba64803bf95ac9ac147110e40e4af257e64f812bdd4b"
+    },
+    "1762868579408": {
+      "events": {},
+      "links": {},
+      "address": "0x1D35Bc1Fa4e7f0abBcCdb0Ef04F2d36686890037",
+      "transactionHash": "0x9dc70be2b224171ca58d1c3d7cefa857e8f911c740b7e89effcb7d7375152125"
+    },
+    "1763059574441": {
+      "events": {},
+      "links": {},
+      "address": "0xc4BF48f606A93bA39c6348883669dB01fFE94Ecb",
+      "transactionHash": "0x52791d06099f3b6d307d9a8744e5e8fa5659d3e064494d00605cf38fef76ae28"
+    },
+    "1763059791921": {
+      "events": {},
+      "links": {},
+      "address": "0x134f2Ca60a70E1DAcC8db30d3aAE5BCfdd6B2E41",
+      "transactionHash": "0x47ee031e58bb44c96f3af46ca03622c924c597ccb16fcb665d7c359fa3d03895"
     }
   },
   "schemaVersion": "3.4.16",
-  "updatedAt": "2025-11-11T12:54:39.018Z",
-  "networkType": "ethereum",
+  "updatedAt": "2025-11-24T18:57:25.043Z",
   "devdoc": {
     "kind": "dev",
     "methods": {},

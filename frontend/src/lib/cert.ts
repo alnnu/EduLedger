@@ -29,6 +29,7 @@ export const bachConvertCertToObj = (cert: any): CertType[] => {
   for (let i = 0; i < cert.length; i++) {
     certsArray.push(convertCertToObj(cert[i]));
   }
+
   return certsArray;
 }
 
