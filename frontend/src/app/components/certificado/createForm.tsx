@@ -89,6 +89,7 @@ export default function CertForm(/* { files, setFiles }: Props */) {
 
   const imageFile = form.watch("imagem");
   const [imagePreview, setImagePreview] = useState<string | null>(null);
+  const [sending, setSending] = useState(false);
 
   useEffect(() => {
     if (imageFile instanceof File) {
@@ -121,7 +122,7 @@ export default function CertForm(/* { files, setFiles }: Props */) {
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     try {
-      console.log(values.imagem);
+      setSending(true);
 
       const resImmage = await Ipsf.createImage(values.imagem);
 
@@ -160,6 +161,8 @@ export default function CertForm(/* { files, setFiles }: Props */) {
       console.error("Form submission error", error);
       toast.error("falha ao enviar o certificado. tente novamente.");
     }
+
+    setSending(false);
   }
 
 
@@ -329,7 +332,7 @@ export default function CertForm(/* { files, setFiles }: Props */) {
             </FormItem>
           )}
         />
-        <Button type="submit">Submit</Button>
+        <Button type="submit" disabled={sending}>Submit</Button>
       </form>
     </Form >
 
