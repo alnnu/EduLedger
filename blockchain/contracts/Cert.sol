@@ -33,6 +33,8 @@ contract Cert {
         nftContract = NftIPFS(nftAddress);
     }
 
+    event certAdded(string _metadataHash);
+
     function addCert(string memory _issuerName, string memory _date, string memory _subject, string memory _course, string memory _imageHash, string memory _metadataHash) payable external returns (cert memory) {
         
 
@@ -49,6 +51,8 @@ contract Cert {
         nftContract.mintCertificado(msg.sender ,_metadataHash);
 
         certCount++;
+
+        emit certAdded(_metadataHash);
         return newCert;
     }
     function getCert(string memory _metadataHash) view external returns(cert memory) {

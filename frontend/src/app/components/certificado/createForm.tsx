@@ -121,47 +121,69 @@ export default function CertForm(/* { files, setFiles }: Props */) {
 
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
+    let loadingId;
+    let hasUploadedImageHash = false;
+    let hasUploadedMetadataHash = false;
+
+    let imageHash = "";
+    let metadataHash = "";
+
     try {
       setSending(true);
 
       const resImmage = await Ipsf.createImage(values.imagem);
 
       if (resImmage.status == 200) {
+        hasUploadedImageHash = true;
+        imageHash = resImmage.data.Hash;
         const resMetadata = await Ipsf.createMetadata(resImmage.data.Hash, `diploma do curso ${values.curso}`, `Certificado do curso de ${values.curso} emitido por ${values.instituicao} na data de ${format(values.data, "PPP")} para o aluno ${values.nome}.`);
 
         if (resMetadata.status == 200) {
+          metadataHash = resMetadata.data.Hash;
 
+          hasUploadedMetadataHash = true;
           const dados: addCertType = {
             instituicao: values.instituicao,
             curso: values.curso,
             data: values.data.toISOString(),
             aluno: values.nome,
-            hashImagen: resImmage.data.Hash,
-            hashMetadado: resMetadata.data.Hash,
+            hashImagen: imageHash,
+            hashMetadado: metadataHash,
 
           }
 
-          const cert = await addCertService(dados);
+          loadingId = toast.loading("Enviando certificado, por favor aguarde!");
 
-          toast.success("Certificado enviado com sucesso!", {
-            description: `Hash do do certificado: ${resMetadata.data.Hash}`,
+          await addCertService(dados).then((data) => {
+
+            toast.success("Certificado enviado com sucesso!", {
+              description: `Hash do do certificado: ${resMetadata.data.Hash}`,
+            });
+
+
           });
 
-
-          console.log("Certificado adicionado com sucesso:", cert);
-          console.log("Hash da imagem:", resMetadata.data.Hash);
         } else {
-          printError("Erro ao criar metadata no IPFS");
+          throw new Error("Erro ao criar metadata no IPFS");
         }
       } else {
-        printError("Erro ao fazer upload da imagem no IPFS");
+        throw new Error("Erro ao fazer upload da imagem no IPFS");
       }
 
     } catch (error) {
+
+      if (hasUploadedImageHash) {
+        await Ipsf.removeObject(imageHash);
+      }
+
+      if (hasUploadedMetadataHash) {
+        await Ipsf.removeObject(metadataHash);
+      }
+
       console.error("Form submission error", error);
       toast.error("falha ao enviar o certificado. tente novamente.");
     }
-
+    toast.dismiss(loadingId);
     setSending(false);
   }
 
@@ -332,7 +354,7 @@ export default function CertForm(/* { files, setFiles }: Props */) {
             </FormItem>
           )}
         />
-        <Button type="submit" disabled={sending}>Submit</Button>
+        <Button type="submit" disabled={sending}>{sending ? "enviando certificado" : "enviar"}</Button>
       </form>
     </Form >
 

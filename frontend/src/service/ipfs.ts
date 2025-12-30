@@ -36,6 +36,12 @@ class Ipfs {
   getObject(cid: string) {
     return api.post(`/cat?arg=${cid}`)
   }
+
+  async removeObject(cid: string) {
+
+    await api.post(`/pin/rm?arg=${cid}`)
+    await api.post(`/repo/gc`)
+  }
 }
 
 export default new Ipfs();

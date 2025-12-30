@@ -46,13 +46,15 @@ export const connectWallet = async () => {
 
 export const addCertService = async (dados: addCertType) => {
 
-  console.log(contractAddress);
   const signer = await getProviderOrSigner(true);
   const certContract = new ethers.Contract(contractAddress, abi, signer);
   const tx = await certContract.addCert(dados.instituicao, dados.data, dados.aluno, dados.curso, dados.hashImagen, dados.hashMetadado, {
-    gasLimit: 5000000,
+    gasLimit: 50,
   });
-  return tx;
+
+  const receipt = await tx.wait(1);
+
+  return receipt;
 };
 
 export const getCertService = async (certHash: string) => {
