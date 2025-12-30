@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { connectWallet } from "@/service/web3";
 
 import { useState } from "react";
+import { toast } from "sonner";
 
 export default function WalletButton() {
 
@@ -11,8 +12,14 @@ export default function WalletButton() {
 
   const handleConnectWallet = async () => {
     const connected = await connectWallet();
-    setWalletConnected(connected);
-    console.log("Wallet connected:", connected);
+
+    if (connected.code == 1) {
+      setWalletConnected(true);
+    } else {
+      toast.error(connected.msg, {
+        duration: 5000,
+      });
+    }
   }
 
 

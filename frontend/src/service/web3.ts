@@ -1,4 +1,3 @@
-import Web3Modal from 'web3modal'
 import { ethers } from 'ethers'
 import { abi } from '../../abi'
 import { addCertType } from '@/schema/certSchema';
@@ -6,41 +5,48 @@ import { convertCertToObj, bachConvertCertToObj } from '@/lib/cert';
 
 const contractAddress = process.env.NEXT_PUBLIC_CONTRACT_ADDRESS || '';
 
-let web3Modal: Web3Modal;
 
-if (typeof window !== 'undefined') {
-  web3Modal = new Web3Modal({
-    network: 'rinkeby',
-    providerOptions: {},
-    disableInjectedProvider: false,
-  });
-}
 
 const getProviderOrSigner = async (needSigner = false) => {
-  const provider = await web3Modal.connect();
-  const web3Provider = new ethers.BrowserProvider(provider);
+
+
+  const web3Provider = new ethers.BrowserProvider(window.ethereum);
+  console.log(web3Provider);
   const { chainId } = await web3Provider.getNetwork();
 
   if (chainId !== 141319n) {
     console.log(chainId);
-    window.alert('Change the network');
-    throw new Error('Change network');
+    throw new Error('Carteira em outra rede. Por favor, mude para a rede correta!');
   }
 
   if (needSigner) {
-    const signer = await web3Provider.getSigner();
-    return signer;
+    try {
+      const signer = await web3Provider.getSigner();
+      return signer;
+    } catch (err) {
+      throw new Error('Erro ao tentar conectar a carteira. Por favor, tente novamente!');
+    }
   }
   return web3Provider;
 };
 
 export const connectWallet = async () => {
   try {
-    await getProviderOrSigner();
-    return true;
+
+    if (typeof window.ethereum === 'undefined') {
+      throw new Error('nem uma carteira web3 detectada');
+    }
+    await getProviderOrSigner(true);
+    return {
+      code: 1,
+      msg: 'carteira conectada com sucesso',
+    };
   } catch (err) {
     console.error(err);
-    return false;
+    return {
+      code: 2,
+      msg: err instanceof Error ? err.message : 'erro desconhecido',
+    };
   }
 };
 
@@ -49,7 +55,7 @@ export const addCertService = async (dados: addCertType) => {
   const signer = await getProviderOrSigner(true);
   const certContract = new ethers.Contract(contractAddress, abi, signer);
   const tx = await certContract.addCert(dados.instituicao, dados.data, dados.aluno, dados.curso, dados.hashImagen, dados.hashMetadado, {
-    gasLimit: 50,
+    gasLimit: 5000000,
   });
 
   const receipt = await tx.wait(1);
