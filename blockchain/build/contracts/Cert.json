@@ -20437,11 +20437,11 @@
       "events": {},
       "links": {},
       "address": "0xa3B1C2639751EcDEd12F6b1F9E2d4971A42e491A",
-      "transactionHash": "0x147ecce468c4a5481949b56af7ef540f0887b71b1b9a4baf7471cbd3a5c4091d"
+      "transactionHash": "0xb9063148a181a11d77b1d96219ddbf54384f95972dfd7fb2b04c0e3f584908c1"
     }
   },
   "schemaVersion": "3.4.16",
-  "updatedAt": "2025-12-30T17:15:18.557Z",
+  "updatedAt": "2026-01-09T17:58:08.305Z",
   "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",
