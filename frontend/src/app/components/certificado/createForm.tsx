@@ -36,6 +36,7 @@ import {
 import {
   format
 } from "date-fns"
+import { ptBR } from "date-fns/locale";
 import {
   Popover,
   PopoverContent,
@@ -136,16 +137,16 @@ export default function CertForm(/* { files, setFiles }: Props */) {
       if (resImmage.status == 200) {
         hasUploadedImageHash = true;
         imageHash = resImmage.data.Hash;
-        const resMetadata = await Ipsf.createMetadata(resImmage.data.Hash, `diploma do curso ${values.curso}`, `Certificado do curso de ${values.curso} emitido por ${values.instituicao} na data de ${format(values.data, "PPP")} para o aluno ${values.nome}.`);
+        const resMetadata = await Ipsf.createMetadata(resImmage.data.Hash, `Diploma do curso ${values.curso}`, `Certificado do curso de ${values.curso} emitido por ${values.instituicao} na data de ${format(values.data, "PPP", { locale: ptBR })} para o aluno ${values.nome}.`);
 
         if (resMetadata.status == 200) {
           metadataHash = resMetadata.data.Hash;
-
+          console.log(format(values.data, "dd/MM/yy").toString())
           hasUploadedMetadataHash = true;
           const dados: addCertType = {
             instituicao: values.instituicao,
             curso: values.curso,
-            data: values.data.toISOString(),
+            data: format(values.data, "dd/MM/yy").toString(),
             aluno: values.nome,
             hashImagen: imageHash,
             hashMetadado: metadataHash,
@@ -257,7 +258,7 @@ export default function CertForm(/* { files, setFiles }: Props */) {
                           )}
                         >
                           {field.value ? (
-                            format(field.value, "PPP")
+                            format(field.value, "PPP", { locale: ptBR })
                           ) : (
                             <span>Escolha uma data</span>
                           )}

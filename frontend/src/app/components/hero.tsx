@@ -49,7 +49,7 @@ export default function Hero() {
   return (
     <Card className="w-full sm:max-w-4xl py-10 gap-8 bg-black">
       <CardHeader className="mb-10 mt-5">
-        <CardTitle className="text-center text-4xl text-white">Eduledger</CardTitle>
+        <CardTitle className="text-center text-4xl text-white">CertLedger</CardTitle>
         <CardDescription className="text-center text-xl text-white">
           Sistema para validar e emitir certificados digitais em uma rede Blockchain
         </CardDescription>

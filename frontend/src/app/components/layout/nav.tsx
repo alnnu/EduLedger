@@ -34,7 +34,7 @@ const Logo = () => {
           width={32}
           height={32}
         />
-        EduLedger
+        CertLedger
       </h1>
     </Link>
   );

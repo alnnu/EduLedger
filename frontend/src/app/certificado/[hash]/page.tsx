@@ -70,6 +70,9 @@ export default function CertificadoIdPage() {
     );
   }
 
+
+  console.log(certData);
+
   if (!certData || !metadado) {
     return (
       <div className="flex items-center justify-center h-screen">
@@ -110,7 +113,7 @@ export default function CertificadoIdPage() {
                 </div>
                 <div className="space-y-1">
                   <p className="text-sm font-medium text-gray-500 dark:text-gray-400">Data de Emissão</p>
-                  <p className="text-lg font-semibold">{new Date(certData!.data).toLocaleDateString()}</p>
+                  <p className="text-lg font-semibold">{certData?.data}</p>
                 </div>
               </div>
               <Separator />
