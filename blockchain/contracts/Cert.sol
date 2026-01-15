@@ -20,6 +20,7 @@ contract Cert {
     struct display {
         string imageHash;
         string metadataHash;
+        uint256 NFTid;
     }
   
     mapping (uint => cert) public certs;
@@ -48,7 +49,7 @@ contract Cert {
         newCert.displayInfo.imageHash = _imageHash;
         newCert.displayInfo.metadataHash = _metadataHash;
 
-        nftContract.mintCertificado(msg.sender ,_metadataHash);
+        newCert.displayInfo.NFTid = nftContract.mintCertificado(msg.sender ,_metadataHash);
 
         certCount++;
 

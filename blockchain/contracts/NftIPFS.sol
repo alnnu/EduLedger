@@ -11,10 +11,12 @@ contract NftIPFS is ERC721, ERC721URIStorage {
 
   constructor() ERC721("Diplomas", "BCC") {}
 
-  function mintCertificado(address to, string memory metaData) external  {
+  function mintCertificado(address to, string memory metaData) external  returns (uint256) {
     uint256 tokenId = nextTokenId++;
     _mint(to, tokenId);
     _setTokenURI(tokenId, string.concat("ipfs://", metaData));
+
+    return tokenId;
   }
 
   function tokenURI(uint256 tokenId) public view override(ERC721, ERC721URIStorage) returns (string memory) {
