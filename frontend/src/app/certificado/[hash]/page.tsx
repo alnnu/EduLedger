@@ -41,11 +41,14 @@ export default function CertificadoIdPage() {
   const [certData, setCertData] = useState<CertType | null>(null);
   const [metadado, setMetadado] = useState<any>(null);
 
+  const contractAddress = process.env.NEXT_PUBLIC_CONTRACT_ADDRESS || '';
+  const contractAddressNFT = process.env.NEXT_PUBLIC_CONTRACT_NFT_ADDRESS || '';
+
   const fetchData = async () => {
     try {
       const certService = await getCertService(`${hash}`);
       setCertData(certService);
-
+      console.log(certService);
       const metadado = await ipfs.getObject(certService.display.metadado);
       setMetadado(metadado.data);
     } catch (error) {
@@ -120,17 +123,40 @@ export default function CertificadoIdPage() {
               <div className="space-y-1 mb-2">
                 <p className="text-sm font-medium text-gray-500 dark:text-gray-400">Hash do Certificado</p>
                 <p className="text-sm font-mono break-all">{hash}</p>
+                <div className="flex flex-col sm:flex-row justify-center gap-2">
+                  <Button asChild>
+                    <Link href={metadado.image} target="_blank" rel="noopener noreferrer">
+                      Ver no IPFS
+                    </Link>
+                  </Button>
+                </div>
+
+
               </div>
             </CardContent>
-            <CardFooter className="flex flex-col sm:flex-row justify-center gap-2">
-              <Button asChild>
-                <Link href={metadado.image} target="_blank" rel="noopener noreferrer">
-                  Ver no IPFS
-                </Link>
-              </Button>
-            </CardFooter>
           </div>
         </div>
+
+        <Separator />
+        <CardFooter className="flex">
+          <div className="grid gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="space-y-1">
+                <p className="text-sm font-medium text-gray-500 dark:text-gray-400">Endereço do contrato que emitiu</p>
+                <p className="text-lg font-semibold">{contractAddress}</p>
+              </div>
+              <div className="space-y-1">
+                <p className="text-sm font-medium text-gray-500 dark:text-gray-400">Endereço do contrato que gerou o NFT</p>
+                <p className="text-lg font-semibold">{contractAddressNFT}</p>
+              </div>
+              <div className="space-y-1">
+                <p className="text-sm font-medium text-gray-500 dark:text-gray-400">Id do Nft</p>
+                <p className="text-lg font-semibold">{certData?.display.NFTid}</p>
+              </div>
+            </div>
+          </div>
+
+        </CardFooter>
       </Card>
     </div>
   );

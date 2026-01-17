@@ -4,7 +4,7 @@ export const convertCertToObj = (cert: any): CertType => {
   const [aluno, curso, data, credenciais, display] = cert;
 
   const [instituicao, carteira] = credenciais;
-  const [imagem, metadado] = display;
+  const [imagem, metadado, NFTid] = display;
 
   const obj: CertType = {
     aluno,
@@ -16,7 +16,8 @@ export const convertCertToObj = (cert: any): CertType => {
     },
     display: {
       imagem,
-      metadado
+      metadado,
+      NFTid
     }
   }
 

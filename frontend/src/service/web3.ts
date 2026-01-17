@@ -16,7 +16,7 @@ const getProviderOrSigner = async (needSigner = false) => {
 
   if (chainId !== 141319n) {
     console.log(chainId);
-    throw new Error('Carteira em outra rede. Por favor, mude para a rede correta!');
+    //   throw new Error('Carteira em outra rede. Por favor, mude para a rede correta!');
   }
 
   if (needSigner) {

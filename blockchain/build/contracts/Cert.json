@@ -21131,11 +21131,11 @@
       "events": {},
       "links": {},
       "address": "0xa3B1C2639751EcDEd12F6b1F9E2d4971A42e491A",
-      "transactionHash": "0x301c97b446f3c3ee59c69c9fba76c077c69c29ff846c8f0c444d7bc5e5441f0e"
+      "transactionHash": "0x4ee179e70f7bbd9dfab155bf11557fc3b2f28163a5a10b0a102cdaa05c13436a"
     }
   },
   "schemaVersion": "3.4.16",
-  "updatedAt": "2026-01-15T17:26:27.801Z",
+  "updatedAt": "2026-01-15T19:09:39.039Z",
   "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",

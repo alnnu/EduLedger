@@ -18,6 +18,7 @@ export type CertType = {
   display: {
     imagem: string;
     metadado: string;
+    NFTid: number;
   }
 }
 
