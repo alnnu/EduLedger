@@ -36,7 +36,7 @@ contract Cert {
 
     event certAdded(string _metadataHash);
 
-    function addCert(string memory _issuerName, string memory _date, string memory _subject, string memory _course, string memory _imageHash, string memory _metadataHash) payable external returns (cert memory) {
+    function addCert(string memory _issuerName, string memory _date, string memory _subject, string memory _course, string memory _imageHash, string memory _metadataHash) payable external {
         
 
         cert storage newCert = certs[certCount];
@@ -54,7 +54,6 @@ contract Cert {
         certCount++;
 
         emit certAdded(_metadataHash);
-        return newCert;
     }
     function getCert(string memory _metadataHash) view external returns(cert memory) {
         for (uint i = 0; i < certCount; i++) {
