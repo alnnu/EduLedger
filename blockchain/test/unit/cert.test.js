@@ -1,12 +1,15 @@
 const Cert = artifacts.require("Cert");
 
+const Nft = artifacts.require("NftIPFS");
 
 
 
 contract("Cert", () => {
+  let nftInstance;
   let certInstance;
 
   before(async () => {
+    nftInstance = await Nft.deployed();
     certInstance = await Cert.deployed();
   })
 
@@ -36,7 +39,9 @@ contract("Cert", () => {
     assert.equal(retrievedCert.displayInfo.imageHash, "imageHashTest", "Image hash does not match");
     assert.equal(retrievedCert.displayInfo.metadataHash, "metadataHashTest", "Metadata hash does not match");
 
+    const newNft = await nftInstance.tokenURI(retrievedCert.displayInfo.NFTid);
 
+    assert.equal(newNft, "ipfs://metadataHashTest", "NFT url does not match");
 
   })
 
