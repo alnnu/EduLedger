@@ -5,9 +5,10 @@ const Nft = artifacts.require("NftIPFS");
 
 
 
-contract("Cert", () => {
+contract("Cert", (accounts) => {
   let nftInstance;
   let certInstance;
+  let msgSender = accounts[0];
 
   before(async () => {
     nftInstance = await Nft.deployed();
@@ -33,7 +34,8 @@ contract("Cert", () => {
       "subjectTest",
       "courseTest",
       "imageHashTest",
-      "metadataHashTest"
+      "metadataHashTest",
+      { from: msgSender }
     );
 
 
@@ -54,6 +56,10 @@ contract("Cert", () => {
     const newNft = await nftInstance.tokenURI(retrievedCert.displayInfo.NFTid);
 
     assert.equal(newNft, "ipfs://metadataHashTest", "NFT url does not match");
+
+    const nftOwner = await nftInstance.ownerOf(retrievedCert.displayInfo.NFTid);
+
+    assert.equal(nftOwner, msgSender, "NFT owner does not match");
 
   })
 
