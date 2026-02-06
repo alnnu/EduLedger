@@ -21,12 +21,12 @@ module.exports = async function(deployer, network, accounts) {
 
 
     await deployer.deploy(Cert, nftInstance.address);
-    const CertInstance = await Cert.deployed();
+    const certInstance = await Cert.deployed();
 
     console.log("----------------------------------------------------");
     console.log(` MeuContrato deployed com sucesso!`);
-    console.log(` Endereço do Cert: ${nftInstance.address}`);
-    console.log(` Endereço do Nft: ${CertInstance.address}`);
+    console.log(` Endereço do Cert: ${certInstance.address}`);
+    console.log(` Endereço do Nft: ${nftInstance.address}`);
     console.log(` Rede: ${network}`);
     console.log("----------------------------------------------------");
 
